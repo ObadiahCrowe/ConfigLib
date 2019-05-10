@@ -1,7 +1,5 @@
 package me.obadiahpcrowe.config;
 
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -11,33 +9,27 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 
+/**
+ * Represents a JSON file. Can be utilised for configs, storage, etc.
+ *
+ * @param <T> The class that is extending LoadableConfig.
+ */
 public abstract class LoadableConfig<T> {
 
     /**
-     * The gson instance utilised in loading / saving.
+     * The Gson instance utilised in loading / saving.
      */
-    private static final Gson GSON_INSTANCE = new GsonBuilder().setLenient().setPrettyPrinting().serializeNulls()
-      .addSerializationExclusionStrategy(new ExclusionStrategy() {
-          @Override
-          public boolean shouldSkipField(FieldAttributes fieldAttributes) {
-              return fieldAttributes.getName().equalsIgnoreCase("configurationClass") && fieldAttributes.getDeclaringClass() == LoadableConfig.class;
-          }
-
-          @Override
-          public boolean shouldSkipClass(Class<?> aClass) {
-              return false;
-          }
-      }).create();
+    private static final Gson GSON_INSTANCE = new GsonBuilder().setLenient().setPrettyPrinting().serializeNulls().create();
 
     /**
      * Class of the configuration (for serialisation).
      */
-    private final Class<? extends LoadableConfig> configurationClass;
+    private transient final Class<? extends LoadableConfig> configurationClass;
 
     /**
      * Output stream to log to.
      */
-    private final PrintStream printStream;
+    private transient final PrintStream printStream;
 
     /**
      * Represents a configuration file.

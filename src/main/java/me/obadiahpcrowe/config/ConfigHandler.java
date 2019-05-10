@@ -2,6 +2,9 @@ package me.obadiahpcrowe.config;
 
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * Tiny utility class to quickly load JSON files.
+ */
 public final class ConfigHandler {
 
     /**
