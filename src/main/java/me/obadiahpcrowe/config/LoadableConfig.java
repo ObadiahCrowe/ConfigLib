@@ -35,6 +35,7 @@ public abstract class LoadableConfig<T> {
      * Represents a configuration file.
      *
      * @param clazz Class of the configuration.
+     * @param printStream Output stream to log to.
      */
     public LoadableConfig(Class<? extends LoadableConfig> clazz, PrintStream printStream) {
         this.configurationClass = clazz;
