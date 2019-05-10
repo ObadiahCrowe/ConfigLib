@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
@@ -86,13 +87,17 @@ public abstract class LoadableConfig<T> {
     }
 
     /**
-     * Finds a generified configuration by it's class.
+     * Gets a loadable config via its class.
      *
-     * @param clazz Class of the configuration.
+     * @param clazz Class to load from.
      *
-     * @return Generified configuration.
+     * @return Loaded, generified, config.
      */
     public static LoadableConfig<?> getByClass(Class<? extends LoadableConfig> clazz) {
-        return ConfigHandler.getByClass(clazz);
+        try {
+            return clazz.getConstructor().newInstance();
+        } catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
+            throw new RuntimeException("Error loading config, " + clazz.getSimpleName() + ": " + e);
+        }
     }
 }

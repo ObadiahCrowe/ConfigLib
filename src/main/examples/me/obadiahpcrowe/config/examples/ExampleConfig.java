@@ -38,14 +38,23 @@ public class ExampleConfig extends LoadableConfig<ExampleConfig> {
         this.booleans = booleans;
     }
 
+    /**
+     * @return Text
+     */
     public String getExampleText() {
         return this.exampleText;
     }
 
+    /**
+     * @return Double
+     */
     public double getSomeDouble() {
         return this.someDouble;
     }
 
+    /**
+     * @return A list of booleans.
+     */
     public List<Boolean> getBooleans() {
         return Collections.unmodifiableList(this.booleans);
     }

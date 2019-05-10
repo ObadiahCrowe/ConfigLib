@@ -3,7 +3,7 @@ A quick and easy way to access configuration files in json.
 
 ### Loading a config
 ```java
-ExampleConfig config = (ExampleConfig) ConfigHandler.getByClass(ExampleConfig.class).load();
+ExampleConfig config = (ExampleConfig) LoadableConfig.getByClass(ExampleConfig.class).load();
 ```
 
 ### Saving a config
