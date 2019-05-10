@@ -39,14 +39,14 @@ public class ExampleConfig extends LoadableConfig<ExampleConfig> {
     }
 
     /**
-     * @return Text
+     * @return A string of text.
      */
     public String getExampleText() {
         return this.exampleText;
     }
 
     /**
-     * @return Double
+     * @return A double.
      */
     public double getSomeDouble() {
         return this.someDouble;
